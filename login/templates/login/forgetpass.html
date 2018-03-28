@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}忘记密码页{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+		<div class="container">
+        <div class="col-md-4 col-md-offset-4">
+            <form class='form-login' action="/forgetpass/" method="post">
+                {% if message %}
+                	<div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+
+                <h2 class="text-center">重置密码</h2>
+              
+              	{% csrf_token %}
+              	
+                <div class="form-group">
+                    {{ pw_reset_form.email.label_tag }}
+					{{ pw_reset_form.email }}
+                </div>
+			    
+
+                <button type="reset" class="btn btn-default pull-left">重置</button>
+                <button type="submit" class="btn btn-primary pull-right">发送邮件</button>
+            </form>
+
+        </div>
+       
+    </div>
+
+{% endblock %}
